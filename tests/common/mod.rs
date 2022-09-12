@@ -1,8 +1,8 @@
 use std::fs::File;
 use std::io::prelude::*;
 
-pub fn setup() -> File {
-    match create_file() {
+pub fn setup(file_name: &str) -> File {
+    match create_file(file_name) {
         Ok(value) => {
             value
         },
@@ -12,8 +12,8 @@ pub fn setup() -> File {
     }
 }
 
-fn create_file() -> std::io::Result<File> {
-    let mut file = File::create("test.txt")?;
+fn create_file(file_name: &str) -> std::io::Result<File> {
+    let mut file = File::create(file_name)?;
     file.write_all(b".*.*.\n..*..\n..*..\n.....")?;
     Ok(file)
 }
