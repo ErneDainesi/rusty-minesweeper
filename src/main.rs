@@ -12,7 +12,7 @@ const FILE_NAME: &str = "./table.txt";
 fn main() {
     match crate::file::read_file(FILE_NAME) {
         Ok(value) => {
-           crate::file::parse_lines(value)
+           println!("{:?}", crate::file::parse_lines(value))
         },
         Err(err) => println!("[FILE READ ERROR] {:?}", err)
     }

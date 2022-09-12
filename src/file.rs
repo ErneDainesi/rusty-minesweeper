@@ -24,8 +24,9 @@ pub fn read_file(file_name: &str) -> Result<Vec<String>> {
 /// the minefield is sweeped and if a mine is found,
 /// it will increment the mine counter and build
 /// the output
-pub fn parse_lines(buf: Vec<String>) {
+pub fn parse_lines(buf: Vec<String>) -> Vec<String> {
     let mut mine_field = crate::minefield::MineField::new();
+    let mut output = vec![];
     for line in &buf {
         mine_field.push(line.as_bytes())
     }
@@ -46,6 +47,8 @@ pub fn parse_lines(buf: Vec<String>) {
             }
         }
         println!("{:?}", res);
+        output.push(res);
         res = "".to_string();
     }
+    output
 }
