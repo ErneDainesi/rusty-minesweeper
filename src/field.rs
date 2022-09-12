@@ -1,16 +1,30 @@
+/// The byte value of a mine, used later
+/// to check if the field is a mine or not
 const MINE: u8 = b'*';
 
+/// The Field struct represents each value
+/// of the mine field. It stores its neighbours
+/// which are later used to check if any of them
+/// are a mine
 pub struct Field {
     neighbours: Vec<u8>
 }
 
 impl Field {
+    /// Basic constructor of the field, it receives a mine field,
+    /// the current row and column and it uses the get_neighbours
+    /// function to store the values of the neighbours to the
+    /// current field
     pub fn new(matrix: &crate::minefield::MineField, row: usize, column: usize) -> Self {
         Self {
             neighbours: Self::get_neighbours(matrix, row, column)
         }
     }
 
+    /// Receives the mine field and the current row and column.
+    /// First it gets each necessary index of the neighbour fields
+    /// Then, if the indexes are valid, the value of each neighbour
+    /// field is stored into a vector.
     fn get_neighbours(mine_field: &crate::minefield::MineField, row: usize, column: usize) -> Vec<u8> {
         let left_idx = Self::safe_decrement(column, mine_field.get_matrix()[row].len());
         let top_idx = Self::safe_decrement(row, mine_field.get_matrix()[row].len());
@@ -45,19 +59,30 @@ impl Field {
         neighbours
     }
 
-    pub fn sweep_mines(&self, count: &mut i32) {
+    /// This function iterates through each neighbour
+    /// and checks if the value of the neighbour field
+    /// is a mine. If it is, then the mine_count is incremented
+    pub fn sweep_mines(&self, mine_count: &mut i32) {
         for field in self.neighbours.iter() {
             if is_mine(*field) {
-                *count += 1
+                *mine_count += 1
             }
         }
     }
 
+    /// This is a utility function to avoid overflow when
+    /// subtracting from a usize. If theres no overflow,
+    /// then the subtraction is executed. Otherwise, a
+    /// default value is returned, this dafault value is
+    /// later checked to make sure we dont access an invalid
+    /// position of a vector
     fn safe_decrement(n: usize, default_value: usize) -> usize {
         n.checked_sub(1).unwrap_or(default_value)
     }
 }
 
+/// This function receivs a value from a field
+/// and checks whether or not the value is a mine
 pub fn is_mine(value: u8) -> bool {
     value == MINE
 }
