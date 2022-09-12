@@ -1,16 +1,17 @@
 mod field;
 mod minefield;
 mod file;
-
-/// Name of the file to read
-const FILE_NAME: &str = "./table.txt";
+use std::env;
 
 /// Main function where we check if
-/// the result of reading the file
-/// is an error or is the valid string
-/// vector
+/// the result of reading the file is an
+/// error or is the valid string vector.
+/// If the file is correctly read, the we
+/// search for the mines in the `parse_lines` function.
 fn main() {
-    match crate::file::read_file(FILE_NAME) {
+    let args: Vec<String> = env::args().collect();
+    let file_name = &args[1];
+    match crate::file::read_file(file_name) {
         Ok(value) => {
            println!("{:?}", crate::file::parse_lines(value))
         },
