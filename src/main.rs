@@ -14,6 +14,6 @@ fn main() {
         Ok(value) => {
            crate::file::parse_lines(value)
         },
-        Err(err) => println!("[ERROR] {:?}", err)
+        Err(err) => println!("[FILE READ ERROR] {:?}", err)
     }
 }
