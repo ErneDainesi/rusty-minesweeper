@@ -1,6 +1,6 @@
 mod field;
-mod minefield;
 mod file;
+mod minefield;
 use std::env;
 
 /// Main function where we check if
@@ -13,8 +13,8 @@ fn main() {
     let file_name = &args[1];
     match crate::file::read_file(file_name) {
         Ok(value) => {
-           println!("{:?}", crate::file::parse_lines(value))
-        },
-        Err(err) => println!("[FILE READ ERROR] {:?}", err)
+            println!("{:?}", crate::file::parse_lines(value))
+        }
+        Err(err) => println!("[FILE READ ERROR] {:?}", err),
     }
 }

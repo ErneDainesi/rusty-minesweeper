@@ -7,7 +7,7 @@ const MINE: u8 = b'*';
 /// which are later used to check if any of them
 /// are a mine
 pub struct Field {
-    neighbours: Vec<u8>
+    neighbours: Vec<u8>,
 }
 
 impl Field {
@@ -17,7 +17,7 @@ impl Field {
     /// current field
     pub fn new(matrix: &crate::minefield::MineField, row: usize, column: usize) -> Self {
         Self {
-            neighbours: Self::get_neighbours(matrix, row, column)
+            neighbours: Self::get_neighbours(matrix, row, column),
         }
     }
 
@@ -25,7 +25,11 @@ impl Field {
     /// First it gets each necessary index of the neighbour fields
     /// Then, if the indexes are valid, the value of each neighbour
     /// field is stored into a vector.
-    fn get_neighbours(mine_field: &crate::minefield::MineField, row: usize, column: usize) -> Vec<u8> {
+    fn get_neighbours(
+        mine_field: &crate::minefield::MineField,
+        row: usize,
+        column: usize,
+    ) -> Vec<u8> {
         let left_idx = Self::safe_decrement(column, mine_field.get_matrix()[row].len());
         let top_idx = Self::safe_decrement(row, mine_field.get_matrix()[row].len());
         let bottom_idx = row + 1;

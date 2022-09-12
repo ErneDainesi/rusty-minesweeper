@@ -2,16 +2,14 @@
 /// from the file. It contains a matrix that
 /// is used to look for mines.
 pub struct MineField<'a> {
-    matrix: Vec<&'a [u8]>
+    matrix: Vec<&'a [u8]>,
 }
 
 impl<'a> MineField<'a> {
     /// Constructor used to create an empty matrix
     pub fn new() -> Self {
         let matrix: Vec<&[u8]> = vec![];
-        Self {
-           matrix
-        }
+        Self { matrix }
     }
 
     /// Save a row into the matrix

@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::io::{BufReader, BufRead, Result};
+use std::io::{BufRead, BufReader, Result};
 
 /// Function responsable to read the file that is passed
 /// as an argument.  

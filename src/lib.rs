@@ -1,3 +1,3 @@
-pub mod file;
 pub mod field;
+pub mod file;
 pub mod minefield;

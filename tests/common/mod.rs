@@ -3,9 +3,7 @@ use std::io::prelude::*;
 
 pub fn setup(file_name: &str) -> File {
     match create_file(file_name) {
-        Ok(value) => {
-            value
-        },
+        Ok(value) => value,
         Err(error) => {
             panic!("[FILE CREATION ERROR]: {}", error);
         }
