@@ -86,3 +86,39 @@ impl Field {
 pub fn is_mine(value: u8) -> bool {
     value == MINE
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    /// Test to check if value passed isn't a mine
+    fn value_is_not_a_mine() {
+        let value: u8 = ".".as_bytes()[0];
+        assert!(!is_mine(value));
+    }
+
+    #[test]
+    /// Test to check if passing a * is treated
+    /// as a mine
+    fn value_is_a_mine() {
+        let value: u8 = "*".as_bytes()[0];
+        assert!(is_mine(value));
+    }
+
+    #[test]
+    /// Test if passing a row to the mine field
+    /// and the sweeping for mines the same row
+    /// returns the expected amount of mines
+    fn correct_amount_of_mines_are_found() {
+        let mut mine_count = 0;
+        let mine_field_row = ".*.*.".as_bytes();
+        let mut mine_field = crate::minefield::MineField::new();
+        mine_field.push(mine_field_row);
+        let row = 0;
+        let column = 2;
+        let field = Field::new(&mine_field, row, column);
+        field.sweep_mines(&mut mine_count);
+        assert_eq!(mine_count, 2);
+    }
+}
