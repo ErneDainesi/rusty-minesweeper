@@ -30,3 +30,27 @@ impl<'a> MineField<'a> {
         &self.matrix
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    /// Creates a matrix and checks if the amount of
+    /// rows is equal to 0. If it does, it means the
+    /// matrix was created succesfully
+    fn create_empty_matrix() {
+        let mine_field = MineField::new();
+        assert_eq!(mine_field.len(), 0);
+    }
+
+    #[test]
+    /// Add a row to the mine field matrix.
+    /// The amount of rows should be updated
+    fn push_row_to_matrix() {
+        let mut mine_field = MineField::new();
+        let row = ".*.*.".as_bytes();
+        mine_field.push(row);
+        assert_eq!(mine_field.len(), 1);
+    }
+}
