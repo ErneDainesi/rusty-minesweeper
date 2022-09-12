@@ -1,7 +1,8 @@
 use std::fs::File;
-use std::io::{BufReader, BufRead, Result};/// Function responsable to read the file defined in
+use std::io::{BufReader, BufRead, Result};
 
-/// the const FILE_NAME.
+/// Function responsable to read the file that is passed
+/// as an argument.  
 /// This function iterates through each line and
 /// builds a vector of Strings. The return value
 /// is a Result.
@@ -46,7 +47,6 @@ pub fn parse_lines(buf: Vec<String>) -> Vec<String> {
                 res += &counter.to_string();
             }
         }
-        println!("{:?}", res);
         output.push(res);
         res = "".to_string();
     }
