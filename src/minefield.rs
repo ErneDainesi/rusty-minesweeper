@@ -22,6 +22,7 @@ impl<'a> MineField<'a> {
         self.matrix.len()
     }
 
+    /// Returns true if the matrix is empty
     #[allow(dead_code)]
     pub fn is_empty(&self) -> bool {
         self.matrix.len() > 0
