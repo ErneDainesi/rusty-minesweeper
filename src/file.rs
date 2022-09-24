@@ -48,7 +48,7 @@ pub fn parse_lines(buf: Vec<String>) -> Vec<String> {
             let field = crate::field::Field::new(&mine_field, i, j);
             field.sweep_mines(&mut counter);
             if counter < 1 {
-                res += &".".to_string();
+                res += ".";
             } else {
                 res += &counter.to_string();
             }

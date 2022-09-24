@@ -22,10 +22,21 @@ impl<'a> MineField<'a> {
         self.matrix.len()
     }
 
+    #[allow(dead_code)]
+    pub fn is_empty(&self) -> bool {
+        self.matrix.len() > 0
+    }
+
     /// Function used to get the matrix that represents
     /// the mine field
     pub fn get_matrix(&self) -> &Vec<&[u8]> {
         &self.matrix
+    }
+}
+
+impl<'a> Default for MineField<'a> {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
