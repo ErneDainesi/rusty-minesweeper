@@ -17,6 +17,12 @@ pub fn read_file(file_name: &str) -> Result<Vec<String>> {
     Ok(v)
 }
 
+pub fn print_output(output: Vec<String>) {
+    for field in output {
+        println!("{:?}", field);
+    }
+}
+
 /// This function receives the vector of Strings
 /// created in the read_file function and
 /// and each line is read as bytes.

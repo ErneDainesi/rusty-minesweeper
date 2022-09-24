@@ -13,7 +13,8 @@ fn main() {
     let file_name = &args[1];
     match crate::file::read_file(file_name) {
         Ok(value) => {
-            println!("{:?}", crate::file::parse_lines(value))
+            let output = crate::file::parse_lines(value);
+            crate::file::print_output(output);
         }
         Err(err) => println!("[FILE READ ERROR] {:?}", err),
     }
